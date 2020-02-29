@@ -1,23 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
+import { Word } from "../model/word"
+import {FilterStatus} from "../model/FilterStatus"
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
-export class BookComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class BookComponent {
+  filterStatus = FilterStatus.filterAll;
+  // filterStatus : FilterStatus ;
+  OnFilterButton(value):FilterStatus{
+    return this.filterStatus = value;
   }
   arrSeason = ['Xuan', 'Ha', 'Thu', 'Dong'];
-  arrWords = [
-    { id: 1, en: 'action', vn: 'hành động', memorized: true },
-    { id: 2, en: 'actor', vn: 'diễn viên', memorized: false },
-    { id: 3, en: 'activity', vn: 'hoạt động', memorized: true },
-    { id: 4, en: 'active', vn: 'chủ động', memorized: true },
-    { id: 5, en: 'bath', vn: 'tắm', memorized: false },
-    { id: 6, en: 'bedroom', vn: 'phòng ngủ', memorized: true }
+  arrWords: Word[] = [
+    { en: 'action', vn: 'hành động', memorized: true },
+    { en: 'actor', vn: 'diễn viên', memorized: false },
+    { en: 'activity', vn: 'hoạt động', memorized: true },
+    { en: 'active', vn: 'chủ động', memorized: true },
+    { en: 'bath', vn: 'tắm', memorized: false },
+    { en: 'bedroom', vn: 'phòng ngủ', memorized: true }
   ];
+  add(object: Word) {
+    this.arrWords.push({
+      en: object.en,
+      vn: object.vn,
+    })
+
+  }
+  delete(en) {
+    const index = this.arrWords.findIndex(word => word.en === en);
+    this.arrWords.splice(index, 1);
+  }
 }

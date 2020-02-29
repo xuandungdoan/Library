@@ -1,3 +1,34 @@
-<div *ngFor= "let word of arrWords">
-    <app-list [en] = "word.en" [vn] = "word.vn"></app-list>
+<!-- <div style="width: 40%;">
+    <input class="form-control" type="text" placeholder="Text ENG" [(ngModel)]=textEn><br>
+    <input class="form-control" type="text" placeholder="Text VN" [(ngModel)]=textVn><br>
+</div>
+
+<button class="btn btn-success" (click)="add()">Add</button><br> -->
+<div style="padding: 10px;">
+    <div class="form-group" style="width: 10%;">
+        <code style="font-size: 2em;">Filter Nè</code>
+        <select class="form-control" [(ngModel)]=filterStatus>
+            <option value="0">FilterAll</option>
+            <option value="1">FilterMemorized</option>
+            <option value="2">FilterForget</option>
+        </select>
+    </div>
+    <app-form-add (formClick)="add($event)"></app-form-add>
+    <app-filter-button (OnFilterButton)=OnFilterButton($event) [filterStatus]=[filterStatus]></app-filter-button>
+    <!-- <div class="mb-2">
+        <button class="btn btn-primary mr-2" (click) = "OnFilterButton(0)">A</button>
+        <button class="btn btn-primary mr-2" (click) = "OnFilterButton(1)">M</button>
+        <button class="btn btn-primary" (click) = "OnFilterButton(2)">F</button>
+    </div> -->
+    <!-- <div *ngFor="let word of arrWords">
+        <app-list [filterStatus] = filterStatus [memorized] = "word.memorized" [en]="word.en" [vn]="word.vn" (listClick)="delete(word.en)"></app-list>
+    </div> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3" *ngFor="let word of arrWords">
+                <app-list [filterStatus]=filterStatus [memorized]="word.memorized" [en]="word.en" [vn]="word.vn"
+                    (listClick)="delete(word.en)"></app-list>
+            </div>
+        </div>
+    </div>
 </div>

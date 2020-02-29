@@ -1,0 +1,5 @@
+<div class="mb-2">
+    <button class="btn btn-primary mr-2" [disabled]="filterStatus == 0 " (click) = "setStatus(0)" >A</button>
+    <button class="btn btn-primary mr-2" [disabled]="filterStatus == 1 "  (click) = "setStatus(1)"  >M</button>
+    <button class="btn btn-primary" [disabled]="filterStatus == 2 "  (click) = "setStatus(2)">F</button>
+</div>
